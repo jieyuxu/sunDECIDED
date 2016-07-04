@@ -1,0 +1,225 @@
+<!DOCTYPE HTML>
+<!--
+	Solarize by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>SUNdecided</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.dropotron.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+		</noscript>
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+		<style>
+        #meter td {
+            height: 30px;
+            width: 100%;
+            border: 1px solid black;
+        }
+
+        .extreme {
+            background-color: purple;
+        }
+
+        .very_high {
+            background-color: #e60073;
+        }
+
+        .high {
+            background-color: orange;
+        }
+
+        .moderate {
+            background-color: #ffdf32;
+        }
+
+        .low {
+            background-color: green;
+        }
+
+        .extreme, .very_high, .high, .moderate, .low {
+            display: none;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        #advice {
+            font-size: 20px;
+            font-family: 'Arial';
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        .tone {
+            display:inline-block;
+            width:50px;
+            height:50px;
+        }
+
+        #determine {
+            display: none;
+        }
+
+        #enter_zip {
+        	text-align: center;
+        	width: 40%;
+        	margin: 0 30%;
+        }
+
+    </style>
+
+    <script src="jquery-1.8.2.min.js"></script>
+
+	</head>
+	<body class="homepage">
+
+		<!-- Header Wrapper -->
+			<div class="wrapper style1">
+			
+			<!-- Header -->
+				<div id="header">
+					<div class="container">
+							
+						<!-- Logo -->
+							<h1><a href="#" id="logo">SUNdecided</a></h1>
+						
+						<!-- Nav -->
+							<nav id="nav">
+								<ul>
+									<li class="active"><a href="index.html">Home</a></li>
+									<!--<li>
+										<a href="">Dropdown</a>
+										<<ul>
+											<li><a href="#">Lorem ipsum dolor</a></li>
+											<li><a href="#">Magna phasellus</a></li>
+											<li><a href="#">Etiam dolore nisl</a></li>
+											<li>
+												<a href="">Phasellus consequat</a>
+												<ul>
+													<li><a href="#">Lorem ipsum dolor</a></li>
+													<li><a href="#">Phasellus consequat</a></li>
+													<li><a href="#">Magna phasellus</a></li>
+													<li><a href="#">Etiam dolore nisl</a></li>
+													<li><a href="#">Veroeros feugiat</a></li>
+												</ul>
+											</li>
+											<li><a href="#">Veroeros feugiat</a></li>
+										</ul>
+									</li>
+								-->
+									<li><a href="abt.html">ABOUT</a></li>
+									<li><a href="res.html">RESOURCES</a></li>
+									<li><a href="try.py">SKIN TONE?</a></li>
+								</ul>
+							</nav>
+	
+					</div>
+				</div>
+				
+			<!-- Banner -->
+				<div id="banner">
+					<section class="container">
+						<h2>Sundecided</h2>
+						<span>By: Shazmin Mahmund, Billy Wong, Amy Xu</span>
+						<p>Your health, one UV ray at a time.</p>
+					</section>
+				</div>
+		<!--zipcode-->
+		<!-- Team -->
+			<div class="wrapper style5">
+				<section id="team" class="container">
+					<header class="major">
+						<h2>Enter your zipcode below:</h2>
+						<span class="byline">Check the UV index of your zip code by the hour.</span>
+					</header>
+			<div id="enter_zip">				
+    			<p align="center">Zip Code:</p>
+    			<p align="center"><input style="width: 5em;" type="number" id="zip" maxlength="5"></p>
+    			<p align="center"><button type="button" onclick="get_uv()">Submit</button></p>
+    			<p align="center" id="uv_value"></p>
+    			
+<div id="determine"> 
+<p>Please select the skin tone that most resembles you.</p>   			
+<div id="tone1" class="tone" onclick="tone_select(this)" style="background-color:#F4D0B1;"><input type="radio" id="tone1-" name="tone"></div>
+<div id="tone2" class="tone" onclick="tone_select(this)" style="background-color:#E7B48F;"><input type="radio" id="tone2-" name="tone"></div>
+<div id="tone3" class="tone" onclick="tone_select(this)" style="background-color:#D29E7C;"><input type="radio" id="tone3-" name="tone"></div>
+<div id="tone4" class="tone" onclick="tone_select(this)" style="background-color:#BA7750;"><input type="radio" id="tone4-" name="tone"></div>
+<div id="tone5" class="tone" onclick="tone_select(this)" style="background-color:#A55D2B;"><input type="radio" id="tone5-" name="tone"></div>
+<div id="tone6" class="tone" onclick="tone_select(this)" style="background-color:#3C201D;"><input type="radio" id="tone6-" name="tone"></div>
+<p><button type="button" onclick="diagnose()">Choose</button></p>
+<p id="recommend"></p>
+</div>
+
+<h2 style="font-family:Arial" align="center">UV Index Scale</h2>
+<br/>
+<table>
+
+    <tr>
+        <td id="meter">
+            <table width="45px">
+                <tr><td id="a_extreme" onmouseover="show(this)" onmouseout="hide(this)"><div class="extreme">11</div></td></tr>
+                <tr><td id="a_very_high" onmouseover="show(this)" onmouseout="hide(this)"><div class="very_high">10</div></td></tr>
+                <tr><td id="b_very_high" onmouseover="show(this)" onmouseout="hide(this)"><div class="very_high">9</div></td></tr>
+                <tr><td id="c_very_high" onmouseover="show(this)" onmouseout="hide(this)"><div class="very_high">8</div></td></tr>
+                <tr><td id="a_high" onmouseover="show(this)" onmouseout="hide(this)"><div class="high">7</div></td></tr>
+                <tr><td id="b_high" onmouseover="show(this)" onmouseout="hide(this)"><div class="high">6</div></td></tr>
+                <tr><td id="a_moderate" onmouseover="show(this)" onmouseout="hide(this)"><div class="moderate">5</div></td></tr>
+                <tr><td id="b_moderate" onmouseover="show(this)" onmouseout="hide(this)"><div class="moderate">4</div></td></tr>
+                <tr><td id="c_moderate" onmouseover="show(this)" onmouseout="hide(this)"><div class="moderate">3</div></td></tr>
+                <tr><td id="a_low" onmouseover="show(this)" onmouseout="hide(this)"><div class="low"><2</div></td></tr>
+            </table>
+        </td>
+
+        <td><div id="advice">Move your mouse over the UV Index scale to learn more about each UV level.</div></td>
+
+    </tr>
+
+</table>
+					</div>
+				</section>
+			</div>
+
+				</section>
+		</div>
+
+
+	<!-- Footer -->
+		<div id="footer">
+			<section class="container">
+				<header class="major">
+					<h2>Connect with us</h2>
+					<span class="byline">Email us at: unicorns12122342@gmail.com</span>
+				</header>
+				<hr />
+			</section>
+			
+			<!-- Copyright -->
+				<div id="copyright">
+					Design: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a> (<a href="http://unsplash.com/cc0">CC0</a>)
+				</div>			
+		</div>
+
+	</body>
+	<script src="myScript.js"></script>
+<script>
+document.getElementById("meter").style.width = "50px";
+document.getElementById("meter").style.paddingRight = "20px";
+
+</script>
+
+</html>
+</html>
